@@ -15,7 +15,7 @@ var ASB = (function(a) {
 		alert('it werked');
 	}
 
-	a.modules = Object.extend({
+	a.modules = $.extend({
 		javascript_example: {
 			myMethod: myMethod,
 		},

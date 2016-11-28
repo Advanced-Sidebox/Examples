@@ -26,7 +26,7 @@ function asb_peeker_example_info()
 		"title" => 'Setting Peeker Example',
 		"description" => 'This module demonstrates using the built-in ACP Peeker JavaScript object to hide/show setting(s) based on the value of another setting',
 		"wrap_content" => true,
-		"version" => '1',
+		"version" => '1.0.1',
 		"compatibility" => '2.1',
 		"settings" => array(
 			"first_setting" => array(
@@ -60,7 +60,7 @@ function asb_peeker_example_settings_load()
 	echo <<<EOF
 
 	<script type="text/javascript">
-	new Peeker($$('.setting_first_setting'), $('setting_second_setting'), /1/, true);
+	new Peeker($('.setting_first_setting'), $('#setting_second_setting'), /1/, true);
 	</script>
 EOF;
 }

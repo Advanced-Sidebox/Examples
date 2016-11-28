@@ -26,7 +26,7 @@ function asb_template_example_info()
 		"title" => 'Template Example',
 		"description" => 'This is a simple example of using a template with an ASB module',
 		"wrap_content" => true,
-		"version" =>	'1',
+		"version" =>	'1.0.1',
 		"compatibility" => '2.1',
 		"templates" => array(
 			array(
@@ -37,7 +37,7 @@ function asb_template_example_info()
 				</tr>
 				<tr>
 					<td class="trow2">
-						<img src="images/logo.gif" alt="logo" title="example" width="{\$inner_width}px" style="margin: {\$margin}px;"/>
+						<img src="images/logo.png" alt="logo" title="example" width="{\$inner_width}px" style="margin: {\$margin}px;"/>
 					</td>
 				</tr>
 EOF
