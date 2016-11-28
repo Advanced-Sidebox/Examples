@@ -27,7 +27,7 @@ function asb_template_example_info()
 		"description" => 'This is a simple example of using a template with an ASB module',
 		"wrap_content" => true,
 		"version" =>	'1.0.1',
-		"compatibility" => '2.1',
+		"compatibility" => '3',
 		"templates" => array(
 			array(
 				"title" => 'asb_template_example',

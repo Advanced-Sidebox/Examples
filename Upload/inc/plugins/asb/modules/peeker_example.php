@@ -27,7 +27,7 @@ function asb_peeker_example_info()
 		"description" => 'This module demonstrates using the built-in ACP Peeker JavaScript object to hide/show setting(s) based on the value of another setting',
 		"wrap_content" => true,
 		"version" => '1.0.1',
-		"compatibility" => '2.1',
+		"compatibility" => '3',
 		"settings" => array(
 			"first_setting" => array(
 				"name" => 'first_setting',
