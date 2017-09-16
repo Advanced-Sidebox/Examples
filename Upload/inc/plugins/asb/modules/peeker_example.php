@@ -8,23 +8,22 @@
  */
 
 // disallow direct access
-if(!defined('IN_MYBB') || !defined('IN_ASB'))
-{
+if (!defined('IN_MYBB') ||
+	!defined('IN_ASB')) {
 	die('Direct initialization of this file is not allowed.<br /><br />Please make sure IN_MYBB is defined.');
 }
 
-/*
- * asb_peeker_example_info()
- *
+/**
  * provide info to ASB about the addon
  *
- * @return: (array) the module info
+ * @return array module info
  */
 function asb_peeker_example_info()
 {
 	return array	(
 		"title" => 'Setting Peeker Example',
 		"description" => 'This module demonstrates using the built-in ACP Peeker JavaScript object to hide/show setting(s) based on the value of another setting',
+		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
 		"wrap_content" => true,
 		"version" => '1.0.1',
 		"compatibility" => '3',
@@ -47,13 +46,11 @@ function asb_peeker_example_info()
 	);
 }
 
-/*
- * asb_peeker_example_settings_load()
- *
+/**
  * used to output custom content/scripts just after the settings are displayed
  * and just before the modal finished loading
  *
- * @return: void
+ * @return void
  */
 function asb_peeker_example_settings_load()
 {
@@ -65,13 +62,11 @@ function asb_peeker_example_settings_load()
 EOF;
 }
 
-/*
- * asb_peeker_example_build_template()
- *
+/**
  * handles display of children of this addon at page load
  *
- * @param - $args - (array) the specific information from the child box
- * @return: (bool) true on success, false on fail/no content
+ * @param  array information from child box
+ * @return bool success/fail
  */
 function asb_peeker_example_build_template($args)
 {

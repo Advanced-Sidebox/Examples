@@ -7,30 +7,28 @@
  */
 
 // disallow direct access
-if(!defined('IN_MYBB') || !defined('IN_ASB'))
-{
+if (!defined('IN_MYBB') ||
+	!defined('IN_ASB')) {
 	die('Direct initialization of this file is not allowed.<br /><br />Please make sure IN_MYBB is defined.');
 }
 
-/*
- * asb_ajax_example_info()
- *
+/**
  * provide info to ASB about the addon
  *
- * @return: (array) the module info
+ * @return array the module info
  */
 function asb_ajax_example_info()
 {
 	global $lang;
 
-	if(!$lang->asb_addon)
-	{
+	if (!$lang->asb_addon) {
 		$lang->load('asb_addon');
 	}
 
 	return array(
 		"title" => 'AJAX/XMLHTTP Example',
 		"description" => 'This module shows how to enable AJAX Refresh for an ASB module',
+		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
 		"wrap_content" => true,
 		"version" => '1',
 		"compatibility" => '2.1',
@@ -44,19 +42,17 @@ function asb_ajax_example_info()
 				"title" => $lang->asb_xmlhttp_on_title,
 				"description" => $lang->asb_xmlhttp_on_description,
 				"optionscode" => 'text',
-				"value" => '0'
-			)
+				"value" => '0',
+			),
 		),
 	);
 }
 
-/*
- * asb_ajax_example_build_template()
- *
+/**
  * handles display of children of this addon at page load
  *
- * @param - $args - (array) the specific information from the child box
- * @return: (bool) true on success, false on fail/no content
+ * @param  array the specific information from the child box
+ * @return bool true on success, false on fail/no content
  */
 function asb_ajax_example_build_template($args)
 {
@@ -70,12 +66,12 @@ function asb_ajax_example_build_template($args)
 	return true;
 }
 
-/*
+/**
  * asb_ajax_example_xmlhttp()
  *
  * handles display of children of this addon via AJAX
  *
- * @return: n/a
+ * @return void
  */
 function asb_ajax_example_xmlhttp()
 {
@@ -89,8 +85,7 @@ function asb_ajax_example_xmlhttp()
 	 * if this were an even remotely useful module, we would actually
 	 * need this conditional; it is only here for an example
 	 */
-	if($this_time)
-	{
+	if ($this_time) {
 		// if the content has changed simply return it
 		return $this_time;
 	}
@@ -99,11 +94,11 @@ function asb_ajax_example_xmlhttp()
 	return 'nochange';
 }
 
-/*
- * asb_ajax_example_get_time()
- * 
- * an example of producing content in one intermediary function to be used by
- * standard and XMLHTTP routines
+/**
+ * an example of producing content in one intermediary function
+ * to be used by standard and XMLHTTP routines
+ *
+ * @return string html
  */
 function asb_ajax_example_get_time()
 {

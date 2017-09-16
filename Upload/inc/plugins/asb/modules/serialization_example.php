@@ -8,23 +8,22 @@
  */
 
 // disallow direct access
-if(!defined('IN_MYBB') || !defined('IN_ASB'))
-{
+if (!defined('IN_MYBB') ||
+	!defined('IN_ASB')) {
 	die('Direct initialization of this file is not allowed.<br /><br />Please make sure IN_MYBB is defined.');
 }
 
-/*
- * asb_serialization_example_info()
- *
+/**
  * provide info to ASB about the addon
  *
- * @return: (array) the module info
+ * @return array module info
  */
 function asb_serialization_example_info()
 {
 	return array(
 		"title" => 'Setting Serialization Example',
 		"description" => 'This is an example of using a custom setting and managing its serialization and use.',
+		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
 		"wrap_content" => true,
 		"version" => '1',
 		"compatibility" => '2.1',
@@ -49,11 +48,9 @@ EOF
 }
 
 /*
- * asb_serialization_example_settings_save()
- *
  * used to alter any setting values prior to being saved to the database
  *
- * @return: (array) the settings
+ * @return array settings
  */
 function asb_serialization_example_settings_save($settings)
 {
@@ -67,8 +64,8 @@ function asb_serialization_example_settings_save($settings)
  *
  * handles display of children of this addon at page load
  *
- * @param - $args - (array) the specific information from the child box
- * @return: (bool) true on success, false on fail/no content
+ * @param  array info from child box
+ * @return bool sucess/fail
  */
 function asb_serialization_example_build_template($args)
 {
@@ -84,26 +81,20 @@ function asb_serialization_example_build_template($args)
 
 	// do something with the values to illustrate the concept
 	$sep = $content = '';
-	foreach($choices as $key => $val)
-	{
+	foreach ($choices as $key => $val) {
 		$content .= $sep . $val;
 		$sep = ' and ';
-		if(isset($choices[$key + 2]))
-		{
+		if (isset($choices[$key + 2])) {
 			$sep = ', ';
 		}
 	}
-	if($content)
-	{
+	if ($content) {
 		$verb = 'are';
-		if(count($choices) == 1)
-		{
+		if (count($choices) == 1) {
 			$verb = 'is';
 		}
 		$content .= " {$verb} selected\n";
-	}
-	else
-	{
+	} else {
 		$content = 'no items are selected';
 	}
 

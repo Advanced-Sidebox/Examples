@@ -8,23 +8,22 @@
  */
 
 // disallow direct access
-if(!defined('IN_MYBB') || !defined('IN_ASB'))
-{
+if (!defined('IN_MYBB') ||
+	!defined('IN_ASB')) {
 	die('Direct initialization of this file is not allowed.<br /><br />Please make sure IN_MYBB is defined.');
 }
 
-/*
- * asb_template_example_info()
- *
+/**
  * provide info to ASB about the addon
  *
- * @return: (array) the module info
+ * @return array module info
  */
 function asb_template_example_info()
 {
 	return array(
 		"title" => 'Template Example',
 		"description" => 'This is a simple example of using a template with an ASB module',
+		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
 		"wrap_content" => true,
 		"version" =>	'1.0.1',
 		"compatibility" => '3',
@@ -41,18 +40,16 @@ function asb_template_example_info()
 					</td>
 				</tr>
 EOF
-			)
-		)
+			),
+		),
 	);
 }
 
-/*
- * asb_template_example_build_template()
- *
+/**
  * handles display of children of this addon at page load
  *
- * @param - $args - (array) the specific information from the child box
- * @return: (bool) true on success, false on fail/no content
+ * @param  array info from child box
+ * @return bool success/fail
  */
 function asb_template_example_build_template($args)
 {
