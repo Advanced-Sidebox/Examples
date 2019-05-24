@@ -1,7 +1,7 @@
 <?php
 /**
  * @name  ASB Example Modules
- * @copyright  2011-2014 WildcardSearch
+ * @copyright 2011-2019 Mark Vincent
  *
  * this is the simplest possible addon module, it does nothing that
  * can't be done with a static custom box
@@ -21,12 +21,12 @@ if (!defined('IN_MYBB') ||
 function asb_simple_example_info()
 {
 	return array	(
-		"title" => 'Simple Example',
-		"description" => "This is the simplest possible addon module, it does nothing that can't be done with a static custom box.",
-		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
-		"wrap_content" => true,
-		"version" => '1',
-		"compatibility" => '2.1',
+		'title' => 'Simple Example',
+		'description' => 'This is the simplest possible addon module, it does nothing that can\'t be done with a static custom box.',
+		'module_site' => 'https://github.com/Advanced-Sidebox/Examples',
+		'wrap_content' => true,
+		'version' => '2',
+		'compatibility' => '4.0',
 	);
 }
 
@@ -36,28 +36,11 @@ function asb_simple_example_info()
  * @param  array info from child box
  * @return bool success/fail
  */
-function asb_simple_example_build_template($args)
+function asb_simple_example_get_content()
 {
-	extract($args);
-
-	/*
-	 * using variable variables (thanks Euan T.) we declare the template variable as global here and eval() its contents.
-	 */
-	global $$template_var; //<-- this is necessary
-
-	/*
-	 * note the structure, this content should be appropriate
-	 * (and validate) as the contents of an HTML <tbody> element
-	 * in structure and content
-	 */
-	$$template_var = <<<EOF
-		<tr>
-					<td class="trow1">Sample content</td>
-				</tr>
+	return <<<EOF
+		<div class="trow1">Sample content</div>
 EOF;
-
-	// return true if your box has something to show, or false if it doesn't.
-	return true;
 }
 
 ?>

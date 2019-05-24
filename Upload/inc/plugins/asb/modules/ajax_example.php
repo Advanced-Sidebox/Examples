@@ -1,7 +1,7 @@
 <?php
 /**
  * @name  ASB Example Modules
- * @copyright  2011-2014 WildcardSearch
+ * @copyright 2011-2019 Mark Vincent
  *
  * this is an example of the an Advanced Sidebox add-on using XMLHTTP
  */
@@ -26,25 +26,15 @@ function asb_ajax_example_info()
 	}
 
 	return array(
-		"title" => 'AJAX/XMLHTTP Example',
-		"description" => 'This module shows how to enable AJAX Refresh for an ASB module',
-		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
-		"wrap_content" => true,
-		"version" => '1',
-		"compatibility" => '2.1',
+		'title' => 'AJAX/XMLHTTP Example',
+		'description' => 'This module shows how to enable AJAX Refresh for an ASB module',
+		'module_site' => 'https://github.com/Advanced-Sidebox/Examples',
+		'wrap_content' => true,
+		'version' => '2',
+		'compatibility' => '4.0',
 
-		// note the following AJAX requirements
-		"xmlhttp" => true,
-		"settings" => array(
-			"xmlhttp_on" => array(
-				"sid" => 'NULL',
-				"name" => 'xmlhttp_on',
-				"title" => $lang->asb_xmlhttp_on_title,
-				"description" => $lang->asb_xmlhttp_on_description,
-				"optionscode" => 'text',
-				"value" => '0',
-			),
-		),
+		// required
+		'xmlhttp' => true,
 	);
 }
 
@@ -54,62 +44,12 @@ function asb_ajax_example_info()
  * @param  array the specific information from the child box
  * @return bool true on success, false on fail/no content
  */
-function asb_ajax_example_build_template($args)
+function asb_ajax_example_get_content()
 {
-	extract($args);
-
-	global $$template_var;
-
-	$$template_var = asb_ajax_example_get_time();
-
-	// return true if your box has something to show, or false if it doesn't.
-	return true;
-}
-
-/**
- * asb_ajax_example_xmlhttp()
- *
- * handles display of children of this addon via AJAX
- *
- * @return void
- */
-function asb_ajax_example_xmlhttp()
-{
-	/*
-	 * get the content-- this is pointless and could be done much more
-	 * easily with JS alone but is only for an example
-	 */
-	$this_time = asb_ajax_example_get_time();
-
-	/*
-	 * if this were an even remotely useful module, we would actually
-	 * need this conditional; it is only here for an example
-	 */
-	if ($this_time) {
-		// if the content has changed simply return it
-		return $this_time;
-	}
-
-	// otherwise return the no changes marker
-	return 'nochange';
-}
-
-/**
- * an example of producing content in one intermediary function
- * to be used by standard and XMLHTTP routines
- *
- * @return string html
- */
-function asb_ajax_example_get_time()
-{
-	global $mybb;
 	$this_time = my_date('h:i:s', TIME_NOW);
+
 	return <<<EOF
-		<tr>
-					<td class="trow1">
-						Current time: {$this_time}
-					</td>
-				</tr>
+		<div class="trow1">Current time: {$this_time}</div>
 EOF;
 }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @name  ASB Example Modules
- * @copyright  2011-2014 WildcardSearch
+ * @copyright 2011-2019 Mark Vincent
  *
  * this is an example of the an Advanced Sidebox add-on using a
  * simple text setting to control content
@@ -27,20 +27,19 @@ function asb_setting_example_info()
 	}
 
 	return array(
-		"title" => 'Setting Example',
-		"description" => 'This module illustrates using settings in ASB modules',
-		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
-		"wrap_content" => true,
-		"version" => '1',
-		"compatibility" => '2.1',
-		"settings" => array(
-			"announcement_text" => array(
-				"sid" => "NULL",
-				"name" => 'announcement_text',
-				"title" => 'Announcement Text',
-				"description" => 'the text entered here will be displayed in the side box',
-				"optionscode" => 'text',
-				"value" => '',
+		'title' => 'Setting Example',
+		'description' => 'This module illustrates using settings in ASB modules',
+		'module_site' => 'https://github.com/Advanced-Sidebox/Examples',
+		'wrap_content' => true,
+		'version' => '2',
+		'compatibility' => '4.0',
+		'settings' => array(
+			'announcement_text' => array(
+				'name' => 'announcement_text',
+				'title' => 'Announcement Text',
+				'description' => 'the text entered here will be displayed in the side box',
+				'optionscode' => 'text',
+				'value' => '',
 			),
 		),
 	);
@@ -52,11 +51,9 @@ function asb_setting_example_info()
  * @param  array info from child box
  * @return bool success/fail
  */
-function asb_setting_example_build_template($args)
+function asb_setting_example_get_content($settings)
 {
-	extract($args);
-
-	global $$template_var, $lang;
+	global $lang;
 
 	if (!$lang->asb_addon) {
 		$lang->load('asb_addon');
@@ -66,15 +63,12 @@ function asb_setting_example_build_template($args)
 		$settings['announcement_text'] = 'Enter text in the setting for this module in ACP to display it here';
 	}
 
-	$$template_var = <<<EOF
-		<tr>
-					<td class="trow1"><span style="color: red; font-size: 1.4em; font-weight: bold;">{$settings['announcement_text']}</span>
-					</td>
-				</tr>
-EOF;
-
 	// return true if your box has something to show, or false if it doesn't.
-	return true;
+	return <<<EOF
+		<div class="trow1">
+			<span style="color: red; font-size: 1.4em; font-weight: bold;">{$settings['announcement_text']}</span>
+		</div>
+EOF;
 }
 
 ?>

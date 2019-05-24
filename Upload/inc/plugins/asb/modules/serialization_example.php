@@ -1,7 +1,7 @@
 <?php
 /**
  * @name  ASB Example Modules
- * @copyright  2011-2014 WildcardSearch
+ * @copyright 2011-2019 Mark Vincent
  *
  * this is an example of using a custom setting and managing its
  * serialization and use
@@ -21,18 +21,18 @@ if (!defined('IN_MYBB') ||
 function asb_serialization_example_info()
 {
 	return array(
-		"title" => 'Setting Serialization Example',
-		"description" => 'This is an example of using a custom setting and managing its serialization and use.',
-		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
-		"wrap_content" => true,
-		"version" => '1',
-		"compatibility" => '2.1',
-		"settings" => array(
-			"multi_setting" => array(
-				"name" => 'multi_setting',
-				"title" => 'Multiple Options Setting',
-				"description" => '',
-				"optionscode" => <<<EOF
+		'title' => 'Setting Serialization Example',
+		'description' => 'This is an example of using a custom setting and managing its serialization and use.',
+		'module_site' => 'https://github.com/Advanced-Sidebox/Examples',
+		'wrap_content' => true,
+		'version' => '2',
+		'compatibility' => '4.0',
+		'settings' => array(
+			'multi_setting' => array(
+				'name' => 'multi_setting',
+				'title' => 'Multiple Options Setting',
+				'description' => '',
+				'optionscode' => <<<EOF
 php
 <select multiple name=\"multi_setting[]\" size=\"3\">
 <option value=\"1\" " . (is_array(unserialize(\$setting['value'])) ? (\$setting['value'] != "" && in_array("1", unserialize(\$setting['value'])) ? "selected=\"selected\"":""):"") . ">First</option>
@@ -41,41 +41,22 @@ php
 </select>
 EOF
 				,
-				"value" => '',
+				'value' => '',
 			),
 		),
 	);
 }
 
 /*
- * used to alter any setting values prior to being saved to the database
- *
- * @return array settings
- */
-function asb_serialization_example_settings_save($settings)
-{
-	// here we are serializing our multiple select box before it saves
-	$settings['multi_setting'] = serialize($settings['multi_setting']);
-	return $settings;
-}
-
-/*
- * asb_serialization_example_build_template()
+ * asb_serialization_example_get_content()
  *
  * handles display of children of this addon at page load
  *
  * @param  array info from child box
  * @return bool sucess/fail
  */
-function asb_serialization_example_build_template($args)
+function asb_serialization_example_get_content($settings)
 {
-	extract($args);
-
-	/*
-	 * using variable variables (thanks Euan T.) we declare the template variable as global here and eval() its contents.
-	 */
-	global $$template_var; //<-- this is necessary
-
 	// in order to use the values will have to unserialize now
 	$choices = (array) unserialize($settings['multi_setting']);
 
@@ -88,23 +69,33 @@ function asb_serialization_example_build_template($args)
 			$sep = ', ';
 		}
 	}
+
 	if ($content) {
 		$verb = 'are';
 		if (count($choices) == 1) {
 			$verb = 'is';
 		}
+
 		$content .= " {$verb} selected\n";
 	} else {
 		$content = 'no items are selected';
 	}
 
-	$$template_var = <<<EOF
-		<tr>
-					<td class="trow1">{$content}</td>
-				</tr>
+	return <<<EOF
+		<div class="trow1">{$content}</div>
 EOF;
+}
 
-	return true;
+/*
+ * used to alter any setting values prior to being saved to the database
+ *
+ * @return array settings
+ */
+function asb_serialization_example_settings_save($settings)
+{
+	// here we are serializing our multiple select box before it saves
+	$settings['multi_setting'] = serialize($settings['multi_setting']);
+	return $settings;
 }
 
 ?>

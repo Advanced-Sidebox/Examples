@@ -1,7 +1,7 @@
 <?php
 /**
  * @name  ASB Example Modules
- * @copyright  2011-2014 WildcardSearch
+ * @copyright 2011-2019 Mark Vincent
  *
  * this is an example of the an Advanced Sidebox add-on using a
  * simple text setting to control content
@@ -21,13 +21,13 @@ if (!defined('IN_MYBB') ||
 function asb_javascript_example_info()
 {
 	return array(
-		"title" => 'Javascript Example',
-		"description" => 'An illustration of using external JavaScript in an ASB module',
-		"module_site" => 'https://github.com/Advanced-Sidebox/Examples',
-		"wrap_content" => true,
-		"version" => '1',
-		"compatibility" => '2.1',
-		"scripts" => array(
+		'title' => 'Javascript Example',
+		'description' => 'An illustration of using external JavaScript in an ASB module',
+		'module_site' => 'https://github.com/Advanced-Sidebox/Examples',
+		'wrap_content' => true,
+		'version' => '2',
+		'compatibility' => '4.0',
+		'scripts' => array(
 			'javascript_example',
 		),
 	);
@@ -39,22 +39,14 @@ function asb_javascript_example_info()
  * @param  array info from child box
  * @return bool success/fail
  */
-function asb_javascript_example_build_template($args)
+function asb_javascript_example_get_content()
 {
-	extract($args);
-
-	global $$template_var;
-
-	$$template_var = <<<EOF
-		<tr>
-					<td class="trow1">
-						<a href="javascript:ASB.modules.javascript_example.myMethod()">Click me!</a>
-					</td>
-				</tr>
-EOF;
-
 	// return true if your box has something to show, or false if it doesn't.
-	return true;
+	return <<<EOF
+		<div class="trow1">
+			<a href="javascript:ASB.modules.javascript_example.myMethod()">Click me!</a>
+		</div>
+EOF;
 }
 
 ?>
