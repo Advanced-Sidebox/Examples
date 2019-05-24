@@ -70,7 +70,7 @@ function asb_peeker_example_settings_load()
 	echo <<<EOF
 
 	<script type="text/javascript">
-	new Peeker($('.setting_first_setting'), $('#setting_second_setting'), /1/, true);
+	new Peeker($('.setting_first_setting'), $('#row_setting_second_setting'), /1/, true);
 	</script>
 EOF;
 }
